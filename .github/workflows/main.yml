@@ -13,5 +13,5 @@ jobs:
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-        repository: myorg/myrepository
+        repository: artsoftheinsane/questionnaire
         tags: latest
