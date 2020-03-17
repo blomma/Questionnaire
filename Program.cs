@@ -16,7 +16,10 @@ namespace Questionnaire {
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder => {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.ConfigureKestrel(serverOptions => {
+                        serverOptions.ListenAnyIP(8080);
+                    })
+                    .UseStartup<Startup>();
                 });
     }
 }
