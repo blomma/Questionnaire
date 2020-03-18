@@ -22,13 +22,16 @@ jobs:
 
             - name: Deploy q
               uses: appleboy/ssh-action@master
+              env:
+                  CONNECTIONSTRING_QUESTIONNAIRE: ${{ secrets.CONNECTIONSTRING_QUESTIONNAIRE }}
               with:
                   host: ${{ secrets.DEPLOY_HOST }}
                   username: ${{ secrets.DEPLOY_USERNAME }}
                   key: ${{ secrets.DEPLOY_KEY }}
+                  envs: CONNECTIONSTRING_QUESTIONNAIRE
                   script: |
                       docker pull artsoftheinsane/questionnaire
                       docker stop questionnaire
                       docker rm questionnaire
-                      docker create --net=lsio --name=questionnaire -e ConnectionStrings:QuestionnaireContext=${{ secrets.CONNECTIONSTRING_QUESTIONNAIRE }} --restart unless-stopped artsoftheinsane/questionnaire
+                      docker create --net=lsio --name=questionnaire -e ConnectionStrings:QuestionnaireContext=$CONNECTIONSTRING_QUESTIONNAIRE --restart unless-stopped artsoftheinsane/questionnaire
                       docker start questionnaire
