@@ -26,4 +26,9 @@ jobs:
                   host: ${{ secrets.DEPLOY_HOST }}
                   username: ${{ secrets.DEPLOY_USERNAME }}
                   key: ${{ secrets.DEPLOY_KEY }}
-                  script: whoami
+                  script: |
+                      docker pull artsoftheinsane/questionnaire
+                      docker stop questionnaire
+                      docker rm questionnaire
+                      docker create --net=lsio --name=questionnaire -e ConnectionStrings:QuestionnaireContext=${{ secrets.CONNECTIONSTRING_QUESTIONNAIRE }} --restart unless-stopped artsoftheinsane/questionnaire
+                      docker start questionnaire
