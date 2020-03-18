@@ -2,23 +2,21 @@
 using Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Questionnaire.Migrations
 {
-    [DbContext(typeof(QuestionsContext))]
-    [Migration("20200316175928_ChangeLastName")]
-    partial class ChangeLastName
+    [DbContext(typeof(QuestionnaireContext))]
+    partial class QuestionnaireContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("Models.Questions", b =>
+            modelBuilder.Entity("Models.Questionnaire.WhatsMyName", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -32,7 +30,7 @@ namespace Questionnaire.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Questions");
+                    b.ToTable("WhatsMyName");
                 });
 #pragma warning restore 612, 618
         }

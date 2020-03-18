@@ -26,16 +26,15 @@ namespace Questionnaire {
         public void ConfigureServices(IServiceCollection services) {
             services.AddRazorPages();
 
-            services.AddDbContextPool<QuestionsContext>(options => options
-                .UseMySql(Configuration.GetConnectionString("QuestionsContext"), mySqlOptions => mySqlOptions
+            services.AddDbContextPool<QuestionnaireContext>(options => options
+                .UseMySql(Configuration.GetConnectionString("QuestionnaireContext"), mySqlOptions => mySqlOptions
                     .ServerVersion(new ServerVersion(new Version(10, 4, 12), ServerType.MariaDb))
             ));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, QuestionsContext questionsContext) {
-            Console.WriteLine(Configuration.GetConnectionString("QuestionsContext"));
-            questionsContext.Database.Migrate();
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, QuestionnaireContext questionnaireContext) {
+            questionnaireContext.Database.Migrate();
 
             if (env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();

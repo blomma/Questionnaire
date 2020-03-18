@@ -10,9 +10,9 @@ using Models;
 
 namespace Questionnaire.Pages {
     public class CreateModel : PageModel {
-        private readonly Data.QuestionsContext _context;
+        private readonly Data.QuestionnaireContext _context;
 
-        public CreateModel(Data.QuestionsContext context) {
+        public CreateModel(Data.QuestionnaireContext context) {
             _context = context;
         }
 
@@ -21,7 +21,7 @@ namespace Questionnaire.Pages {
         }
 
         [BindProperty]
-        public Models.Questions questions { get; set; }
+        public Models.Questionnaire.WhatsMyName questions { get; set; }
 
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
@@ -30,10 +30,10 @@ namespace Questionnaire.Pages {
                 return Page();
             }
 
-            _context.Questions.Add(questions);
+            _context.WhatsMyName.Add(questions);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./WhatsMyName");
         }
     }
 }

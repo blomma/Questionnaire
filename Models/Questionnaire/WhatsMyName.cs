@@ -1,5 +1,5 @@
-namespace Models {
-    public class Questions {
+namespace Models.Questionnaire {
+    public class WhatsMyName {
         public int ID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
